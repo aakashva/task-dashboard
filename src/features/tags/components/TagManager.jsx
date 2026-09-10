@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TagIcon, PencilIcon, TrashIcon, CheckIcon, XMarkIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useTagContext } from '../../../context/TagContext';
-import { useTaskContext } from '../../../context/TaskContext';
+import { useApplicationContext } from '../../../context/ApplicationContext';
 
 function TagManager({ onClose }) {
   const { tags, addTag, editTag, deleteTag } = useTagContext();
-  const { updateTasksWithEditedTag, updateTasksWithDeletedTag } = useTaskContext();
+  const { updateApplicationsWithEditedTag, updateApplicationsWithDeletedTag } = useApplicationContext();
 
   const [newTagName, setNewTagName] = useState('');
   const [editingTag, setEditingTag] = useState(null);
@@ -27,8 +27,8 @@ function TagManager({ onClose }) {
     if (!editedTagName.trim()) return;
     // Update in tag context
     editTag(originalTag, editedTagName.trim());
-    // Update in task context
-    updateTasksWithEditedTag(originalTag, editedTagName.trim());
+    // Update in application context
+    updateApplicationsWithEditedTag(originalTag, editedTagName.trim());
 
     setEditingTag(null);
     setEditedTagName('');
@@ -37,8 +37,8 @@ function TagManager({ onClose }) {
   const handleDeleteTag = (tag) => {
     // Delete from tag context
     deleteTag(tag);
-    // Update tasks that have this tag
-    updateTasksWithDeletedTag(tag);
+    // Update applications that have this tag
+    updateApplicationsWithDeletedTag(tag);
   };
 
   return (

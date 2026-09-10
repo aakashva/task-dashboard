@@ -5,14 +5,6 @@ import initialData from '../../data/initialData.json';
  */
 export const DataHydrationService = {
   /**
-   * Load sample task lists into the application
-   * @returns {Array} Array of sample task lists
-   */
-  getInitialTaskLists: () => {
-    return initialData.taskLists;
-  },
-
-  /**
    * Load sample tags into the application
    * @returns {Array} Array of sample tags
    */
@@ -21,11 +13,11 @@ export const DataHydrationService = {
   },
 
   /**
-   * Load sample tasks into the application
-   * @returns {Array} Array of sample tasks
+   * Load sample job applications into the application
+   * @returns {Array} Array of sample applications
    */
-  getInitialTasks: () => {
-    return initialData.tasks;
+  getInitialApplications: () => {
+    return initialData.applications;
   },
 
   /**

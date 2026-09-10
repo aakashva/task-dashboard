@@ -1,7 +1,7 @@
-# Task Dashboard App - Copilot Instructions
+# Job Application Tracker - Copilot Instructions
 
 ## Project Overview
-This is a React-based Todo application that allows users to create, manage, and organize tasks with features like tags, task lists, and task filtering. The application is built using React, Framer Motion for animations, and Tailwind CSS for styling. It uses Vite as the build tool and Vitest for testing.
+This is a React-based job application tracker that lets users log job applications and follow them through a Kanban-style status board (Applied, Interviewing, Offer, Rejected), with tags for organizing and filtering. The application is built using React, Framer Motion for animations, and Tailwind CSS for styling. It uses Vite as the build tool and Vitest for testing.
 
 ## Code Standards
 
@@ -14,7 +14,7 @@ This is a React-based Todo application that allows users to create, manage, and 
 
 ### React Patterns
 - Follow functional component patterns with React Hooks
-- Use context providers for state management (TaskContext, TagContext, ListContext)
+- Use context providers for state management (ApplicationContext, TagContext)
 - Follow component composition principles
 - Use proper data-testid attributes for testability
 - Apply proper prop types validation when needed
@@ -38,9 +38,8 @@ This is a React-based Todo application that allows users to create, manage, and 
 - `/src`: Main application source code
   - `/context`: React context providers for state management
   - `/features`: Feature-based organization of components
-    - `/lists`: List-related components
+    - `/applications`: Job application and Kanban board components
     - `/tags`: Tag management components
-    - `/tasks`: Task-related components
   - `/common`: Common/shared components and utilities
 - `/public`: Static assets and HTML template
 - Configuration files:
@@ -58,9 +57,8 @@ This is a React-based Todo application that allows users to create, manage, and 
 
 2. **State Management**:
    - Use the established context providers:
-     - `TaskContext` for task-related state and operations
+     - `ApplicationContext` for job application state and operations (add, update status, delete)
      - `TagContext` for tag management
-     - `ListContext` for task list management
    - Follow the pattern of providing actions through context
 
 3. **UI/UX Standards**:

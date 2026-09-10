@@ -1,15 +1,15 @@
-# Task Dashboard
+# Job Application Tracker
 
-A task management application that allows users to create, organize, and filter tasks using a modern, responsive UI built with React.
+A job application tracking app that lets you log companies you've applied to, follow their status through a Kanban-style board, and organize them with tags and notes. Built with React.
 
 > **Note:** This application is intended for demonstration purposes only and is not meant for production use.
 
 ## Features
 
-- **Task Management**: Create, complete, and delete tasks
-- **Task Tags**: Organize tasks with customizable tags
-- **Task Lists**: Create multiple lists with custom filters
-- **List Filters**: Filter tasks by tags or completion status
+- **Application Tracking**: Log company, role, application date, posting URL, and notes for each application
+- **Status Board**: Kanban-style columns (Applied, Interviewing, Offer, Rejected) — move an application between stages with a single dropdown
+- **Tags**: Organize applications with customizable tags (e.g. Remote, Referral, Priority) and filter the board by tag
+- **Stats Summary**: See totals at a glance — how many applications are in each stage
 - **Animations**: Smooth transitions and animations using Framer Motion
 - **Responsive Design**: Works on desktop and mobile devices
 
@@ -51,17 +51,17 @@ A task management application that allows users to create, organize, and filter 
 ### Available Scripts
 
 - `npm start` - Start the development server
-- `npm start:hydrated` - Start the development server with data hydration enabled
+- `npm start:hydrated` - Start the development server with sample application data
 - `npm run build` - Build for production
-- `npm run build:hydrated` - Build for production with data hydration enabled
+- `npm run build:hydrated` - Build for production with sample data
 - `npm run build:clean` - Build for production with data hydration explicitly disabled
 - `npm run preview` - Preview the production build locally
-- `npm run preview:hydrated` - Preview the production build with data hydration enabled
+- `npm run preview:hydrated` - Preview the production build with sample data
 - `npm test` - Run tests with Vitest
 
 ### Data Hydration
 
-The application supports pre-populating the app with sample data through an optional hydration process:
+The application supports pre-populating the app with sample applications through an optional hydration process:
 
 - Sample data is defined in `src/data/initialData.json`
 - Hydration can be enabled/disabled using the `VITE_ENABLE_DATA_HYDRATION` environment variable
@@ -71,26 +71,23 @@ The application supports pre-populating the app with sample data through an opti
   - `npm run build:clean` - Production build without sample data
 - GitHub Actions deployment automatically enables hydration for the production build
 
+Without hydration, the app starts empty and everything you add lives only in memory for that session (there is no backend or persistent storage — this is a demo).
+
 ## Architecture
 
 ### State Management
 
 The application uses React Context for state management:
 
-- **TaskContext**: Manages tasks state and operations (add, toggle, delete)
-- **TagContext**: Manages tags and their relationships with tasks
-- **ListContext**: Manages task lists and filtering logic
+- **ApplicationContext**: Manages the list of job applications and their status (add, update, delete, move between stages)
+- **TagContext**: Manages tags and their relationships with applications
 
 ### UI Components
 
-The application features several key components:
-- **TaskList**: Renders a list of tasks
-- **TaskItem**: Renders an individual task
-- **TaskBoard**: Manages multiple task lists
-- **TagManager**: Interface for creating and managing tags
-- **GlobalTaskForm**: Form for creating new tasks
-- **ListAddTask**: Form for adding tasks to specific lists
-- **TaskListConfig**: Interface for configuring task lists
+- **KanbanBoard**: Renders the status columns and tag filters
+- **ApplicationCard**: Renders an individual application with its status selector
+- **ApplicationForm**: Form for logging a new application
+- **TagManager**: Interface for creating, renaming, and deleting tags
 
 ## Contributing
 

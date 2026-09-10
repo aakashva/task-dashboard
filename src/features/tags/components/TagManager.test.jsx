@@ -7,8 +7,8 @@ import TagManager from './TagManager';
 const mockAddTag = vi.fn();
 const mockEditTag = vi.fn();
 const mockDeleteTag = vi.fn();
-const mockUpdateTasksWithEditedTag = vi.fn();
-const mockUpdateTasksWithDeletedTag = vi.fn();
+const mockUpdateApplicationsWithEditedTag = vi.fn();
+const mockUpdateApplicationsWithDeletedTag = vi.fn();
 
 // Mock data to control context values in tests
 let mockTagsValue = ['work', 'personal', 'urgent'];
@@ -22,10 +22,10 @@ vi.mock('../../../context/TagContext', () => ({
   })
 }));
 
-vi.mock('../../../context/TaskContext', () => ({
-  useTaskContext: () => ({
-    updateTasksWithEditedTag: mockUpdateTasksWithEditedTag,
-    updateTasksWithDeletedTag: mockUpdateTasksWithDeletedTag
+vi.mock('../../../context/ApplicationContext', () => ({
+  useApplicationContext: () => ({
+    updateApplicationsWithEditedTag: mockUpdateApplicationsWithEditedTag,
+    updateApplicationsWithDeletedTag: mockUpdateApplicationsWithDeletedTag
   })
 }));
 
@@ -36,8 +36,8 @@ describe('TagManager Component', () => {
     mockAddTag.mockClear();
     mockEditTag.mockClear();
     mockDeleteTag.mockClear();
-    mockUpdateTasksWithEditedTag.mockClear();
-    mockUpdateTasksWithDeletedTag.mockClear();
+    mockUpdateApplicationsWithEditedTag.mockClear();
+    mockUpdateApplicationsWithDeletedTag.mockClear();
     mockOnClose.mockClear();
     // Reset the mock tags to the default value before each test
     mockTagsValue = ['work', 'personal', 'urgent'];
@@ -104,7 +104,7 @@ describe('TagManager Component', () => {
     fireEvent.click(saveButton);
     
     expect(mockEditTag).toHaveBeenCalledWith('work', 'work-edited');
-    expect(mockUpdateTasksWithEditedTag).toHaveBeenCalledWith('work', 'work-edited');
+    expect(mockUpdateApplicationsWithEditedTag).toHaveBeenCalledWith('work', 'work-edited');
   });
 
   test('cancels editing when cancel button is clicked', () => {
@@ -129,7 +129,7 @@ describe('TagManager Component', () => {
     fireEvent.click(deleteButton);
     
     expect(mockDeleteTag).toHaveBeenCalledWith('personal');
-    expect(mockUpdateTasksWithDeletedTag).toHaveBeenCalledWith('personal');
+    expect(mockUpdateApplicationsWithDeletedTag).toHaveBeenCalledWith('personal');
   });
 
   test('closes the tag manager when close button is clicked', () => {
@@ -176,6 +176,6 @@ describe('TagManager Component', () => {
     fireEvent.click(saveButton);
     
     expect(mockEditTag).not.toHaveBeenCalled();
-    expect(mockUpdateTasksWithEditedTag).not.toHaveBeenCalled();
+    expect(mockUpdateApplicationsWithEditedTag).not.toHaveBeenCalled();
   });
 });
